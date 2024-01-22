@@ -32,10 +32,10 @@ public class NamesMonoMapFilterTest {
     
     @Test
     public void testsForAssignmentThree(){
-       /*  StepVerifier.create(someService.exceptionMonoOnErrorContinue("string"))
+        StepVerifier.create(someService.exceptionMonoOnErrorContinue("string"))
         .expectNext("string")
         .expectComplete()
-        .verify(); */
+        .verify(); 
 
         StepVerifier.create(someService.exceptionMonoOnErrorContinue("abc"))
         .expectNext("runtime error")
