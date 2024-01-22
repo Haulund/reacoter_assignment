@@ -18,14 +18,14 @@ public class SomeService {
     }
 
     public static String throwErrorIfABC(String str) {
-        if (str.equals("abc")) {
-            return new RuntimeException("runtime error").getMessage();
-        } else {
-            return str;
-        }
+        if (str.equals("abc")) throw new RuntimeException("runtime error");
+        return str;
     }
     
     public Mono<String> exceptionMonoOnErrorContinue(String input) {
-        return Mono.just(input).map(SomeService::throwErrorIfABC).log();
+        return Mono.just(input)
+        .map(SomeService::throwErrorIfABC)
+        .onErrorContinue((ex, o) -> System.out.println(input + " " + ex.toString()))
+        .log();
     }
 }
